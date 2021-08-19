@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/user/register','UserController@register');
+Route::get('/user','UserController@index');
 
 Route::get('/messages','MessageController@index');
 Route::post('/messages','MessageController@save');
