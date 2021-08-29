@@ -30,11 +30,13 @@ class Messages
 
     public function broadcastOn()
     {
-        return new Channel('my-channel-'.$this->receiver);
+        //return new Channel('my-channel-'.$this->receiver);
+        return new Channel('elfakhar');
+
     }
 
     public function broadcastAs()
     {
-        return 'my-event';
+        return 'elfakhar_event';
     }
 }
