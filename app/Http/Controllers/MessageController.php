@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Events\Messages;
+use App\Models\User;
 
 class MessageController extends Controller
 {
@@ -31,8 +32,11 @@ class MessageController extends Controller
             'receiver_id'=>$request->receiver_id,
             'body'=>$request->body
         ]);
+        $this->sender = User::find($message->sender_id);
+        $this->receiver = User::find($message->receiver_id);
+        
         /*$senderName=auth()->user()->firstName.' '.auth()->user()->lastName;*/
-        event(new Messages($message->body,$message->receiver_id,$message->sender_id,$message));
+        event(new Messages($message->body,$this->receiver->name,$this->sender->name,$message));
         return response()->json($message);
     }
 }
