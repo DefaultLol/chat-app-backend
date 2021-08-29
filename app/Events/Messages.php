@@ -31,6 +31,7 @@ class Messages
     public function broadcastOn()
     {
         //return new Channel('my-channel-'.$this->receiver);
+        
         return new Channel('elfakhar');
 
     }
