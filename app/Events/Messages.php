@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class Messages
+class Messages implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -31,7 +31,7 @@ class Messages
     public function broadcastOn()
     {
         //return new Channel('my-channel-'.$this->receiver);
-        
+
         return new Channel('elfakhar');
 
     }
