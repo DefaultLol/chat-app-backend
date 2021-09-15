@@ -27,14 +27,18 @@ class MessageController extends Controller
 
     public function save(Request $request)
     {
-        $message=Message::create([
+        /*$message=Message::create([
             'sender_id'=>$request->sender_id,
             'receiver_id'=>$request->receiver_id,
             'body'=>$request->body
+        ]);*/
+        /*$this->sender = User::find($message->sender_id);
+        $this->receiver = User::find($message->receiver_id);*/
+        $response = Http::post('https://odhiya.com/post_data.php', [
+            'sender_id' => $request->sender_id,
+            'receiver_id' => $request->receiver_id,
+            'body' => $request->body
         ]);
-        $this->sender = User::find($message->sender_id);
-        $this->receiver = User::find($message->receiver_id);
-        
         /*$senderName=auth()->user()->firstName.' '.auth()->user()->lastName;*/
         event(new Messages($message->body,$this->receiver->name,$this->sender->name,$message));
         return response()->json($message);
