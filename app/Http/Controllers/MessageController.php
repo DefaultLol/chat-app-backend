@@ -40,7 +40,7 @@ class MessageController extends Controller
             'body' => $request->body
         ]);
         /*$senderName=auth()->user()->firstName.' '.auth()->user()->lastName;*/
-        event(new Messages($request->body,$request->sender_id,$request->receiver_id,$request));
-        return response()->json($request);
+        event(new Messages($request->body,$request->sender_id,$request->receiver_id,$request->all()));
+        return response()->json($request->all());
     }
 }
