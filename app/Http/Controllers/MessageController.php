@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Events\Messages;
@@ -40,7 +40,7 @@ class MessageController extends Controller
             'body' => $request->body
         ]);
         /*$senderName=auth()->user()->firstName.' '.auth()->user()->lastName;*/
-        event(new Messages($message->body,$this->receiver->name,$this->sender->name,$message));
-        return response()->json($message);
+        event(new Messages($request->body,$request->sender_id,$request->receiver_id,$request));
+        return response()->json($request);
     }
 }
